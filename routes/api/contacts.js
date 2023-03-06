@@ -1,43 +1,15 @@
-const express = require('express');
-
-const contactsOperation = require("../../models");
-
+const express = require("express");
+const { contacts: ctrl } = require("../../controllers");
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
-try {
-  const contacts = await contactsOperation.listContacts();
-  res.json({
-    status: "success",
-    code: 200,
-    data: {
-      result: contacts
-    }
-  })
-} catch (error) {
-  console.log(error.message)
-  res.status(500).json({
-    status: "error",
-    code: 500,
-    message: "Server error"
-  })
-}
-})
+router.get("/", ctrl.getAll);
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/:contactId", ctrl.getById);
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.post("/", ctrl.add);
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.delete("/:contactId", ctrl.removeById);
 
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.put("/:contactId", ctrl.updateById);
 
-module.exports = router
+module.exports = router;
