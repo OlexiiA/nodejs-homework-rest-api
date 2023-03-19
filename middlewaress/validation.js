@@ -10,4 +10,3 @@ const validation = (schema) => {
 };
 
 module.exports = validation;
-
