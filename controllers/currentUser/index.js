@@ -3,5 +3,5 @@ const updateAvatar = require("./updateAvatar");
 
 module.exports = {
   getCurrentUser,
-  updateAvatar
+  updateAvatar,
 };
